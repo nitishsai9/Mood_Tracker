@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+    <head>
+
+        <title>Mood Tracker</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+
+        <script defer src="../node_modules/face-api.js/dist/face-api.min.js"></script>
+        <script defer src="face-detection.js"></script>
+        <script src="navigator.js"></script>
+    
+        
+        <!-- CSS Files -->
+        <link rel="stylesheet" type="text/css" href="styles.css">
+        <link rel="stylesheet" href="ui/app.css">
+     
+
+    </head>
+
+    <body class="auth-card-page" >
+       
+<main class="auth auth-card-container">
+        <section class="page-head text-center">
+            <div class="container">
+                <h2 class="text-center font-weight-bold rainbow-text hero-1-title text-dark font-weight-bold text-shadow mb-4">Mood Tracker</h2>
+
+                <h3 id="expression-text" class="text-center font-weight-bold  hero-1-title text-dark font-weight-bold text-shadow mb-4"></h3>
+              
+            </div>
+        </section>
+      
+        <section class="pb-5 border-bottom">
+            <div class="container mb-5">
+                <div class="row">
+                    <div class="offset-xl-2 col-xl-4 col-md-6">
+                      
+                        <div id="video-container" class="img-fluid">
+                            <video id="video" autoplay muted></video>
+                        </div>
+                    </div>
+                  
+                </div>
+            </div>
+        </section>
+          
+     
+    
+
+  
+      
+    </main>
+
+    </body>
+
+</html>

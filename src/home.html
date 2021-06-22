@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+    <head>
+
+        <title>Mood Tracker</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+
+        <script defer src="../node_modules/face-api.js/dist/face-api.min.js"></script>
+        <script defer src="face-detection.js"></script>
+        <script src="navigtor.js"></script>
+        
+        <!-- CSS Files -->
+        <link rel="stylesheet" type="text/css" href="styles.css">
+  
+     
+
+    </head>
+
+    <body class="auth-card-page">
+
+    
+    
+    
+        <main class="auth auth-card-container">
+
+       
+      
+            <div class="auth-card">
+                
+            <div class="row">
+            <div class="col-md-6 d-flex align-items-center justify-content-center auth-bg-section">
+                <div style="text-align: center;">
+                    <img src="https://i.pinimg.com/originals/e5/93/ab/e593ab0589d5f1b389e4dfbcce2bce20.gif" class="img-fluid" alt="Nt">
+                </div>
+      
+            </div>
+            <div class="col-md-6 d-flex py-5 flex-column justify-content-center bg-white">
+            <div class="auth-form-section">
+            <h2 class=" rainbow-text hero-1-title text-dark font-weight-bold text-shadow mb-4">Mood Tracker</h2>
+    
+            <form class="auth-form" method="POST" name="login">
+            <br>
+            <div class="form-group">
+            <label for="id_username">Roll No</label>
+            <input type="text" name="username" autofocus autocapitalize="none" autocomplete="username" minlength="10" maxlength="10" class="form-control" placeholder="Roll Number" required id="id_username">
+            </div>
+            <div class="form-group">
+            <label for="id_fullname">Full Name</label>
+            <input type="text" name="Full Name" autocomplete="Name" class="form-control" maxlength="150" placeholder="Full Name" required id="id_fullname">
+            </div>
+                     <a href="javascript:void(0)" class="btn btn-dark btn-block mb-3" onclick="getData()">
+
+
+            
+            continue
+            </a>
+         
+
+
+        
+           
+            </form>
+    
+            </div>
+            </div>
+            </div>
+            </div>
+            </main>
+
+            <script>
+                const { dialog } = require('electron')
+
+                function getData(){
+                    localStorage.clear();
+                    var rollNumber = document.getElementById('id_username').value;
+                    var fullName =document.getElementById('id_fullname').value;
+
+                    if((rollNumber!=null && fullName!=null) && (rollNumber.length>0 && fullName.length>0)){
+                        localStorage.setItem('rollNumber', rollNumber);
+                        localStorage.setItem('fullName',fullName);
+                        console.log(localStorage.getItem('rollNumber'));
+
+                        nextPage(0);
+                    }else{
+                        
+                        alert("Fill In All The Details");
+                    }
+
+                }
+            </script>
+  
+
+    </body>
+
+</html>

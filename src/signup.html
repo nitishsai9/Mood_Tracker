@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+    <head>
+
+        <title>Mood Tracker</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+
+        <script src="navigtor.js"></script>
+        
+        <!-- CSS Files -->
+        <link rel="stylesheet" type="text/css" href="styles.css">
+  
+     
+
+    </head>
+
+    <body class="auth-card-page">
+        <main class="auth auth-card-container">
+            <div class="auth-card">
+                <div class="row">
+                    <div class="col-md-6 d-flex align-items-center justify-content-center auth-bg-section">
+                        <img src="https://media.tenor.com/images/b9e590ea7a4c1e4bbdd3d579eaf8f4d4/tenor.gif" class="img-fluid" alt="login">
+                    </div>
+                    <div class="col-md-6 d-flex py-2 flex-column justify-content-center bg-white">
+                        <div class="auth-form-section">
+                            <form action="index.html" class="auth-form">
+                                <div class="form-group">
+                                    <label for="username">Login Id</label>
+                                    <input type="text" name="username" id="username" class="form-control" placeholder="RollNumber">
+                                </div>
+                                <div class="form-group">
+                                    <label for="firstName">First Name</label>
+                                    <input type="text" name="firstName" id="firstName" class="form-control" placeholder="firstName">
+                                </div>
+                                <div class="form-group">
+                                    <label for="lastName">Last Name</label>
+                                    <input type="text" name="lastName" id="lastName" class="form-control" placeholder="lastName">
+                                </div>
+                                <div class="form-group">
+                                    <label for="section">Section Id</label>
+                                    <input type="text" name="sectionid" id="sectionid" class="form-control" placeholder="sectionid">
+                                </div>
+                                <div class="form-group">
+                                    <label for="userPassword">Password</label>
+                                    <input type="password" name="userPassword" id="userPassword" class="form-control"
+                                        placeholder="********">
+                                </div>
+
+                                <a href="javascript:void(0)" class="btn btn-dark btn-block mb-3" onclick="postSignIn()">
+
+
+            Sign Up
+                                    </a>
+                                 
+                        
+            
+                            </form>
+                    
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+    </body>
+
+
+    <script>
+    function postSignIn(){
+        const axios = require('axios');
+        var rollNumber = document.getElementById('username').value;
+        var firstName =document.getElementById('firstName').value;
+        var lastName =document.getElementById('lastName').value;
+        var sectionid =document.getElementById('sectionid').value;
+        var password = document.getElementById('userPassword').value;
+
+        axios.post("http://localhost:4000/api/register",
+        {
+                rollNumber: rollNumber,
+                firstName: firstName,
+                password: password,
+                sectionid: sectionid,
+                lastName:lastName
+  }
+        ).then(function (response) {
+      console.log(response);
+    if(response.data.code===200){
+        alert('Signup successful');
+        
+        nextPage(0);
+
+    }
+    else if(response.data.code===204){
+        alert(response.data.failed);
+    }
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+
+
+    }
+    </script>
+
+</html>
