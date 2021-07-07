@@ -70,6 +70,11 @@
             var password =document.getElementById('userPassword').value;
             console.log(userName,password);
 
+
+            if(userName==="" || className==="" || password===""){
+                alert('enter Valid details')
+            }
+
             axios.post('http://localhost:4000/api/login', {
                 rollNumber: userName,
                 password: password
@@ -79,7 +84,7 @@
         var datad= response.data.success;
         if(datad.length===1){
             localStorage.setItem('rollNumber', datad[0].rollNumber);
-            localStorage.setItem('fullName',datad[0].firstName);
+            localStorage.setItem('firstName',datad[0].firstName);
             localStorage.setItem('lastName', datad[0].lastName);
             localStorage.setItem('section',datad[0].section);
             localStorage.setItem('className',className);

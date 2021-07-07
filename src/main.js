@@ -5,7 +5,7 @@ const path = require('path');
 const { app } = require('electron');
 const Window = require('./window');
 
-process.env.NODE_ENV='production';
+process.env.NODE_ENV='jj';
 // Window Objects
 let mainWindow = null;
 
@@ -47,7 +47,7 @@ function createWindow()
     ({
         properties: windowProperties,
         menuTemplate: menuTemplate,
-        file: path.join(__dirname, 'dashboard.html')
+        file: path.join(__dirname, 'login.html')
     });
 }
 

@@ -1,6 +1,7 @@
 const axios = require('axios');
 
-
+var count=0;
+        
 // References
 const video = document.getElementById('video');
 const videoContainer = document.getElementById('video-container');
@@ -122,8 +123,7 @@ video.addEventListener('playing', () =>
         faceapi.draw.drawDetections(canvas, resizedDetections);
         faceapi.draw.drawFaceLandmarks(canvas, resizedDetections);
         faceapi.draw.drawFaceExpressions(canvas, resizedDetections);
-   var count=0;
-        
+  
         // Change colour based on expression
         if(detections.length > 0)
         {
@@ -147,12 +147,57 @@ video.addEventListener('playing', () =>
             if(faceTimeoutCounter > 500)
             {
                 count++;
-                console.log('hello');
-                if(cont>60000){
-                    alert(
-                    'ahan ahan cant stay away from screen!'
-                    );
+                console.log('hello',count);
+                if(count>600){
+                    count=0;
+                    alert('notifying faculty');
+                    console.log('hello');
+                    var rollNumber=localStorage.getItem('rollNumber');
+                    var fullName = localStorage.getItem('firstName')+ localStorage.getItem('lastName');
+                    var className = localStorage.getItem('className');
+                    var facultyNumber="";
+                    var dd={
+                        keyName:className
+                    };
+              
+                    axios.post('http://localhost:4000/api/get_facultyId', dd)
+                    .then((res) => {
+                        facultyNumber=res.data.success[0].facultyNumber;
+                        console.log(facultyNumber);
+                        
 
+                    var d = new Date();
+                    var newdata ={
+                       rollNumber:rollNumber,
+                       fullName:fullName,
+                       keyName:className,
+                       facultyNumber:facultyNumber,
+                       Date:d
+
+
+
+                
+
+
+                    }
+
+
+                    axios.post('http://localhost:4000/api/insert_notifcation', newdata)
+                    .then((res) => {
+                        console.log('Body: ', res.data);
+                    }).catch((err) => {
+                        console.error(err);
+                    });
+               
+                    }).catch((err) => {
+                        console.error(err);
+                    });
+             
+
+
+                   
+
+                  
                     changeExpressionColour('#474747', 'NotOnScreen');
                 }
             }
